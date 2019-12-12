@@ -9,16 +9,26 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    // MARK: - Properties
+    
+    var post: Post? {
+        didSet {
+            updateViews()
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    // MARK: - Outlets
+    
+    @IBOutlet weak var postPhotoImageView: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var commentCountLabel: UILabel!
+    
+    // MARK: - Custom Methods
+    
+    func updateViews() {
+        postPhotoImageView.image = post?.photo
+        captionLabel.text = post?.caption
+        commentCountLabel.text = "\(post?.commentCount ?? 0)"
     }
-
 }
